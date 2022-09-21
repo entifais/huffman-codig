@@ -1,19 +1,27 @@
-#https://www.geeksforgeeks.org/min-heap-in-python/
-def getprob(l:list)->dict:
+class binarytree:
+	def __init__(self,value,l=None,r=None):
+		self.value=value		
+		self.left=l
+		self.right=r
+		
+
+def getprob(l)->dict:
 	"""
-	getprob(l:list)->dict
-	get proabiliti of ocurrences in list
+	getprob(l)->dict
+	get proabiliti of ocurrences in list, can be usen in list and strings
 	"""
 	clearlist=list(set(l))
 	prob={}
 	for i in clearlist:
 		prob[str(i)]=l.count(i)/len(l)
 	return prob
+#https://www.geeksforgeeks.org/min-heap-in-python/
+
 class heapMin:
 	def __init__(self, size):
 			self.maxsize=size
 			self.size=0
-			self.heap=[]*(size+1)
+			self.heap=[None]*(size+1)
 			self.heap[0]=-1
 			self.front=1
 	def parent(self,pos):
@@ -38,7 +46,8 @@ class heapMin:
 	def insert(self, element):
 		if self.size >= self.maxsize :
 			return
-		self.size+= 1,
+		print(type(self.size))
+		self.size+=1
 		self.heap[self.size] = element
 		current = self.size
 		while self.heap[current] < self.heap[self.parent(current)]:
@@ -46,10 +55,10 @@ class heapMin:
 			current = self.parent(current)
 	def p(self):
 		for i in range(1, (self.size//2)+1):
-		print(" PARENT : "+ str(self.Heap[i])+" LEFT CHILD : "+ str(self.Heap[2 * i])+" RIGHT CHILD : "+str(self.Heap[2 * i + 1]))
+			print(" PARENT : "+ str(self.heap[i])+" LEFT CHILD : "+ str(self.heap[2 * i])+" RIGHT CHILD : "+str(self.heap[2 * i + 1]))
 	def p2(self):
-		for i in range(1, (self.size)):
-			print(heap[i])
+		for i in range(1, self.size):
+			print(self.heap[i],end=",")
 	def minHeap(self):
 		for pos in range(self.size//2, 0, -1):
 			self.minHeapify(pos)
