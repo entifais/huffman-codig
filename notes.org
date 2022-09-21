@@ -41,7 +41,7 @@ may be good idea create tree as vector
    |       /     \           |    \
 (7,3,30%,c) (8,a,10%) (9,b,20%)  (10,f,5%) (11,g,5%)
 
-#+endsrc
+#+end_src
 
 (remeber null leafts)
 
