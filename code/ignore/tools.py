@@ -83,3 +83,19 @@ class heapMin:
 		return self.heap
 	def __len__(self):
 		return len(self.heap)
+
+def huffman(prob):
+	data=[]
+	#add elements like pair
+	for i in prob:
+		data.append(pair(prob[i],i))
+	#add elements to minimum heap
+	
+	h=heapMin(len(prob))
+	for i in data:
+		h.insert(i)
+
+	while len(heap)>1:
+		tmp1=h.pop()
+		tmp2=h.pop()
+		for ii in 
