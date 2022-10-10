@@ -1,13 +1,17 @@
 import heapq
-def getprob(l)->dict:
+
+def getprob(words)->dict:
     """
     getprob(l)->dict
     get proabiliti of ocurrences in list, can be usen in list and strings
     """
-    clearlist=list(set(l))
+    #clearlist=list(set(words))
     prob={}
-    for i in clearlist:
-        prob[str(i)]=l.count(i)/len(l)
+    for i in words:
+        if i in prob:
+            prob[i]+=1
+        else:
+            prob[i]=1
     return prob
 
 def code(frequency):
@@ -23,11 +27,13 @@ def code(frequency):
             value[1] = '1' +value[1]
         heapq.heappush(heap, [low[0] + high[0]] + low[1:] + high[1:])
     return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
+
 def getdict(huff):
     d={}
     for i in huff:
         d[i[0]]=i[1]#char,code
     return d
+
 def encode(txt,d):
     newstr=""
     for i in txt:
