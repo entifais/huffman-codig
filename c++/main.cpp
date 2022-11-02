@@ -3,6 +3,19 @@
 #include <vector>
 #include <iostream>
 using namespace std;
+map<int, int> numL(vector<int> &longitudes){
+	map<int, int> table;
+	for(int i=0;i<longitudes.size();i++){
+		if(table.find(longitudes[i])!=table.end()){
+			table[longitudes[i]]=1;
+		}
+		else{
+			table[longitudes[i]]=table[longitudes[i]]+1;
+		}
+	}
+	return table;
+}
+
 map<char, int> getprob(string text){
 	map<char, int> table;
 	for(int i=0;i<text.length();i++){
@@ -53,7 +66,7 @@ void sift(vector<int> &A,int n){
         }
     } 
 }
-vector<int> codeLengh(vector<int> table){
+vector<int> codeLengh(vector<int> &table){
     int m1,m2;
     int n = table.size();
     vector<int> A(2*n,0); //[0] * (2*n)
@@ -87,14 +100,14 @@ vector<int> codeLengh(vector<int> table){
     return A;
 }
 
-vector<char> getKeys(map<char, int> tablaOriginal){
+vector<char> getKeys(map<char, int> &tablaOriginal){
 	vector<char> keys;
 	for(map<char,int>::iterator it = tablaOriginal.begin(); it != tablaOriginal.end(); ++it) {
 		keys.push_back(it->first);
 	}	
 	return keys;
 }
-vector<int> getValues(map<char, int> tablaOriginal){
+vector<int> getValues(map<char, int> &tablaOriginal){
 	vector<int> values;
 	for(map<char,int>::iterator it = tablaOriginal.begin(); it != tablaOriginal.end(); ++it) {
 		values.push_back(it->second);
@@ -108,9 +121,11 @@ int main(){
 	vector<int> A = codeLengh(tabla);
 	int i = 0;
 	while (i < simbolos.size()){
-    	cout<<simbolos[i]<<": "<<A[simbolos.size()+i]<<endl;
-    	//print(simbolos[i], ": ", A[simbolos.length()+i])
+    	cout<<simbolos[i]<<": "<<A[simbolos.size()]<<": "<<A[simbolos.size()+i]<<endl;
+    	cout<<""<<endl;
     	i = i + 1;
     }
+
+    map<int, int> numldata=numL(A);
 	return 0;
 }
