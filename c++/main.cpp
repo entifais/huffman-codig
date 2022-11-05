@@ -7,10 +7,10 @@ map<int, int> numL(vector<int> &longitudes){
 	map<int, int> table;
 	for(int i=0;i<longitudes.size();i++){
 		if(table.find(longitudes[i])!=table.end()){
-			table[longitudes[i]]=1;
+			table[longitudes[i]]=table[longitudes[i]]+1;
 		}
 		else{
-			table[longitudes[i]]=table[longitudes[i]]+1;
+			table[longitudes[i]]=1;
 		}
 	}
 	return table;
@@ -114,6 +114,19 @@ vector<int> getValues(map<char, int> &tablaOriginal){
 	}	
 	return values;
 }
+vector<int> getValues(map<int, int> &tablaOriginal){
+    vector<int> values;
+    for(map<int,int>::iterator it = tablaOriginal.begin(); it != tablaOriginal.end(); ++it) {
+        values.push_back(it->second);
+    }   
+    return values;
+}
+void printMap(map<int, int> &tablaOriginal){
+    for(map<int, int>::iterator it = tablaOriginal.begin(); it != tablaOriginal.end(); ++it) {
+        cout<<it->first<<it->second<<endl;
+    }   
+}
+
 int main(){
 	map<char, int> tablaOriginal = getprob("aaaaabbbbbccccccccccddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffgggggggggg");
 	vector<char> simbolos = getKeys(tablaOriginal);
@@ -127,5 +140,6 @@ int main(){
     }
 
     map<int, int> numldata=numL(A);
+    printMap( numldata);
 	return 0;
 }
