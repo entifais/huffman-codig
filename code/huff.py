@@ -26,6 +26,7 @@ def code(frequency):
         for value in high[1:]:
             value[1] = '1' +value[1]
         heapq.heappush(heap, [low[0] + high[0]] + low[1:] + high[1:])
+    print(heap)
     return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 
 def getdict(huff):
@@ -34,10 +35,10 @@ def getdict(huff):
         d[i[0]]=i[1]#char,code
     return d
 
-def encode(txt,d):
+def encode(txt,dicconary):
     newstr=""
     for i in txt:
-        newstr+=d[i]
+        newstr+=dicconary[i]
     return newstr
 
 def decode(txt,d):
@@ -60,24 +61,18 @@ def main():
     string=input("Enter the string to codifie:\n")
     frequency=getprob(string)
     huff = code(frequency)
+    print(huff)
     d=getdict(huff)
-    #print("character".ljust(10) + "Weight".ljust(10) + "Huffman Code")
-    #for i in huff:
-    #    prob=round(float(frequency[i[0]]),5)
-    #    print(i[0].ljust(10) + str(prob).ljust(10) + i[1])
-
     inp=input("[D]Decode or [E]Encode, print [C]code\n").lower()
     if inp=="d" or inp=="decode" :
-        #string=input("Enter the string to decode:")
-        dec=decode(string,d)
+        dec=decode(string,huff)
         print(dec)
 
     if inp=="e" or inp=="encode":
-        #string=input("Enter the string to encoded:")
         enc=encode(string,d)
         print(enc)
     if inp=="c" or inp=="code":
-        print("character".ljust(10) + "Weight".ljust(10) + "Huffman Code")
+        print("character".ljust(10) + "frequency".ljust(10) + "Huffman Code")
         for i in huff:
             prob=round(float(frequency[i[0]]),5)
             print(i[0].ljust(10) + str(prob).ljust(10) + i[1])
