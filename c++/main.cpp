@@ -128,18 +128,17 @@ void printMap(map<int, int> &tablaOriginal){
 }
 
 int main(){
-	map<char, int> tablaOriginal = getprob("aaaaabbbbbccccccccccddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffffffffffffgggggggggg");
+	map<char, int> tablaOriginal = getprob("velezrestrepoarangosohmpolancorodriguez");
 	vector<char> simbolos = getKeys(tablaOriginal);
 	vector<int> tabla = getValues(tablaOriginal);
 	vector<int> A = codeLengh(tabla);
 	int i = 0;
 	while (i < simbolos.size()){
-    	cout<<simbolos[i]<<": "<<A[simbolos.size()]<<": "<<A[simbolos.size()+i]<<endl;
-    	cout<<""<<endl;
-    	i = i + 1;
-    }
-
+    		cout<<simbolos[i]<<": "<<A[simbolos.size()]<<": "<<A[simbolos.size()+i]<<endl;
+    		cout<<""<<endl;
+    		i = i + 1;
+    	}
     map<int, int> numldata=numL(A);
-    printMap( numldata);
+    printMap(numldata);
 	return 0;
 }
